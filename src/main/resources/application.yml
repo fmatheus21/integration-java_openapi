@@ -11,3 +11,4 @@ spring:
 
 openapi:
   key: ${OPENAPI_KEY}
+  model: o1-preview

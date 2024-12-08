@@ -11,4 +11,5 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "openapi")
 public class OpenApiProperties {
     private String key;
+    private String model;
 }

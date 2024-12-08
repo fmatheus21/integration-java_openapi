@@ -24,10 +24,10 @@ public class ChatGptFacede {
         log.info(request.getUser());
         log.info(request.getSystem());
 
-        var service = new OpenAiService(apiProperties.getKey());
+        var service = new OpenAiService(this.apiProperties.getKey());
 
         var chatRequest = ChatCompletionRequest.builder()
-                .model("o1-preview")
+                .model(this.apiProperties.getModel())
                 .messages(Arrays.asList(
                         new ChatMessage(ChatMessageRole.USER.value(), request.getUser()),
                         new ChatMessage(ChatMessageRole.SYSTEM.value(), request.getSystem())
