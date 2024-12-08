@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.util.Arrays;
 
 @Slf4j
@@ -24,7 +25,7 @@ public class ChatGptFacede {
         log.info(request.getUser());
         log.info(request.getSystem());
 
-        var service = new OpenAiService(this.apiProperties.getKey());
+        var service = new OpenAiService(this.apiProperties.getKey(), Duration.ofSeconds(30)); //Timeout de 30 segundos
 
         var chatRequest = ChatCompletionRequest.builder()
                 .model(this.apiProperties.getModel())
@@ -32,8 +33,9 @@ public class ChatGptFacede {
                         new ChatMessage(ChatMessageRole.USER.value(), request.getUser()),
                         new ChatMessage(ChatMessageRole.SYSTEM.value(), request.getSystem())
                 ))
+                .n(5) //Numero de respostas que deseja que retorne
                 .build();
 
-        service.createChatCompletion(chatRequest).getChoices().forEach(c -> System.out.println(c.getMessage().getContent()));
+        service.createChatCompletion(chatRequest).getChoices().forEach(c -> log.info(c.getMessage().getContent()));
     }
 }
