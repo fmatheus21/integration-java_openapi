@@ -1,0 +1,13 @@
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+    context-path: ${CONTEXT_PATH:/openapi/api/v1}
+  port: ${SERVER_PORT:8083}
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+openapi:
+  key: ${OPENAPI_KEY}
