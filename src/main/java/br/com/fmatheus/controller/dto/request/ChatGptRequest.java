@@ -11,6 +11,4 @@ import lombok.*;
 public class ChatGptRequest {
     @NotBlank
     private String user;
-    @NotBlank
-    private String system;
 }

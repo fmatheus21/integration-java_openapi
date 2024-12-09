@@ -15,8 +15,14 @@ public class ChatGptResource {
     private final ChatGptFacede facede;
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping
-    public void generate(@RequestBody @Valid ChatGptRequest request) {
-        this.facede.generate(request);
+    @PostMapping("/categories")
+    public void generateCategory(@RequestBody @Valid ChatGptRequest request) {
+        this.facede.generateCategory(request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/clients")
+    public void generateClients() {
+        this.facede.generateClients();
     }
 }
